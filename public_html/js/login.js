@@ -21,13 +21,5 @@ function onLoginError(user, error) {
 }
 
 function login(username, password, cbSuccess, cbError) {
-    Parse.User.logIn(username, password).then(cbSuccess, cbError);
+  //logIn(username, password).then(cbSuccess, cbError);
 }
-
-/*
-$(document).ready(function(){
-    if(Parse.User.current()){
-        window.location.href="welcomeScreen.html";
-    }
-})
-*/
