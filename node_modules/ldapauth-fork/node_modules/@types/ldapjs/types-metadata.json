@@ -1,0 +1,26 @@
+{
+    "authors": "Charles Villemure <https://github.com/cvillemure/>, Peter Kooijmans <https://github.com/peterkooijmans/>",
+    "libraryDependencies": [
+        "node"
+    ],
+    "moduleDependencies": [
+        "events"
+    ],
+    "libraryMajorVersion": 1,
+    "libraryMinorVersion": 0,
+    "typeScriptVersion": "2.0",
+    "libraryName": "ldapjs",
+    "typingsPackageName": "ldapjs",
+    "projectName": "http://ldapjs.org",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "master",
+    "globals": [],
+    "declaredModules": [
+        "ldapjs"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "c2bd52ff68aee6e1ec84d32b81926d811b83a8cfc72e40c8c5e5d4d8858396a5"
+}
