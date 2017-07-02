@@ -1,0 +1,23 @@
+{
+  "name": "cloudgamingservice",
+  "version": "1.0.0",
+  "description": "webapp for lecutre cloud computing and the topic cloud gaming developed by aleksandar mitkovski and moritz meyer",
+  "main": "index.js",
+  "dependencies": {
+    "ldapauth-fork": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitkovski/CloudGaming2017.git"
+  },
+  "author": "aleksandar mitkovski, moritz meyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitkovski/CloudGaming2017/issues"
+  },
+  "homepage": "https://github.com/amitkovski/CloudGaming2017#readme"
+}
