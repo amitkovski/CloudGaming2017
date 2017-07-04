@@ -4,7 +4,12 @@
   "description": "webapp for lecutre cloud computing and the topic cloud gaming developed by aleksandar mitkovski and moritz meyer",
   "main": "index.js",
   "dependencies": {
-    "ldapauth-fork": "^4.0.1"
+    "ldapauth-fork": "^4.0.1",
+    "express" : "*",
+    "body-parser": "*",
+    "basic-auth": "*",
+    "passport": "*",
+    "passport-ldapauth": "*"
   },
   "devDependencies": {},
   "scripts": {

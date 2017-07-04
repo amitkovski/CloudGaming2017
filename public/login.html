@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title>Cloud Computing</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/login.css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-padding-right">
+                    <h1 class="text-center login-title">Cloud Gaming - Play anywhere!</h1>
+                    <div class="account-wall">
+                        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                            alt="">
+                        <form class="form-signin" id="login" onsubmit="onLogin();return false;" >
+                            <label for="inputUser" class="sr-only">Benutzername</label>
+                            <input type="text" id="inputUser" class="form-control" placeholder="Benutzername" required autofocus>
+
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
+                            
+                            <button id="btn" class="btn btn-lg btn-primary btn-block" type="submit">
+                                Anmelden</button>
+                            <a href="gamepool.html" class="btn btn-lg btn-primary btn-block">
+                                    Registrierung</a>
+                            <div class="alert alert-danger alert-dismissable fade in" hidden="hidden">
+                                <button type="button" class="close" data-hide="alert"  aria-hidden="true">&times;</button>
+                                Login fehlgeschlagen. Benutzername und/oder Passwort sind nicht korrekt.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/login.js"></script>
+    </body>
+</html>
+
