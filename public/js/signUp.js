@@ -1,12 +1,11 @@
-
-$(document).ready(function(){
-    
 	var ucase = new RegExp("[A-Z]+");
 	var lcase = new RegExp("[a-z]+");
 	var num = new RegExp("[0-9]+");
 
+$(document).ready(function(){
+
 	$("input[type=password]").keyup(function(){
- 
+ 		
 	
 		if($("#password").val().length >= 8){
 			$("#8char").removeClass("glyphicon-remove");
@@ -48,21 +47,25 @@ $(document).ready(function(){
 			$("#num").css("color","#FF0004");
 		}         
 	});
-});
-		  
-$(document).ready(function(){
+
 	$('#SigninBtn').click(function(){
+		console.log("signin");
 		if(check()) {
+			console.log("signin check = true");
 			var name = $("#inputName").val();
 			var mail = $("#inputEmail").val();
 			var password = $("#password").val();
 			signUp(name, mail, password);
 		}
 	});
+
 });
+		  
+	
 
 
 function check(){
+	console.log("check");
 	if(($("#password").val().length >= 8 && ucase.test($("#password").val()) &&
 		lcase.test($("#password").val()) && num.test($("#password").val()))){
 			return true;
@@ -86,7 +89,8 @@ function onSignUpError(user, error) {
 	});
 }
 
-function SignUp(name, mail, password) {
+function signUp(name, mail, password) {
+	console.log("Name: " + name + ", Mail: " + mail + ", password: " + password);
 	$.ajax({
 		url: "http://localhost:3000/signup",
 		type: 'POST',
@@ -94,7 +98,7 @@ function SignUp(name, mail, password) {
 		data: {'username':name, 'mail':mail, 'password':password}, 
 		success: function(result) {
 			console.log("User-Result: ", result);
-			onSignUpSuccess();
+			//onSignUpSuccess();
 		},	
 		error: function(response) {
 			console.log(response);
