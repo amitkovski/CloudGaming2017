@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
     
- var ucase = new RegExp("[A-Z]+");
+	var ucase = new RegExp("[A-Z]+");
 	var lcase = new RegExp("[a-z]+");
 	var num = new RegExp("[0-9]+");
 
@@ -46,26 +46,59 @@ $("input[type=password]").keyup(function(){
 		$("#num").removeClass("glyphicon-ok");
 		$("#num").addClass("glyphicon-remove");
 		$("#num").css("color","#FF0004");
-	}
-   
-          
-    });
- 
- $(document).ready(function(){
-             $('#SigninBtn').click(function(){
-                 check();
-             });
-         });
-        function check(){
-               if(($("#password").val().length >= 8 && ucase.test($("#password").val()) &&
-                     lcase.test($("#password").val()) && num.test($("#password").val()))){
-                     
-                     return true;
-                }  
-                 else
-                    alert("Ungültiges Passwort");
-                     return false;
-         }
+	}         
+	});
+}
+		  
+$(document).ready(function(){
+	$('#SigninBtn').click(function(){
+		if(check()) {
+			var name = $("#inputName").val();
+			var mail = $("#inputEmail").val();
+			var password = $("#password").val();
+			signUp(name, mail, password);
+		}
+	});
 });
 
-       
+
+function check(){
+	if(($("#password").val().length >= 8 && ucase.test($("#password").val()) &&
+		lcase.test($("#password").val()) && num.test($("#password").val()))){
+			return true;
+		}  
+		else
+		{
+			alert("Ungültiges Passwort");
+			return false;
+		}
+};
+
+function onSignUpSuccess() {
+	window.location.href = 'login.html';
+}
+
+function onSignUpError(user, error) {
+	$('.alert').show();
+	// For manually clicking the alert message away  
+	$("[data-hide]").on("click", function () {
+		$(this).closest("." + $(this).attr("data-hide")).hide();
+	});
+}
+
+function SignUp(name, mail, password) {
+	$.ajax({
+		url: "http://localhost:3000/signup",
+		type: 'POST',
+		dataType: 'json',
+		data: {'username':name, 'mail':mail, 'password':password}, 
+		success: function(result) {
+			console.log("User-Result: ", result);
+			onSignUpSuccess();
+		},	
+		error: function(response) {
+			console.log(response);
+			onSignUpError("FakeUser", response);
+		}
+	});
+}	  
