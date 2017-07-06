@@ -5,6 +5,7 @@ var port = process.env.Port || 3000;
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
+var ldapjs = require('ldapjs');
 
 app.use(express.static(__dirname + '/public')); //redirect public Folder with static Assets
 app.use('/css', express.static(__dirname + '/public/css'));
@@ -21,6 +22,10 @@ var OPTS = {
   }
 };
 
+var ldapURL = 'ldap://52.233.129.104:389';
+var adminuser = 'admin';
+var adminpw = 'root';
+
 passport.use(new LdapStrategy(OPTS));
 
 app.use(bodyParser.json());
@@ -35,6 +40,41 @@ app.get('/', function(req, res) {
 app.post('/login', passport.authenticate('ldapauth', { session : false }), function(req, res) {
 	res.send({status: 'ok'});
 });
+
+app.post('/signup', function(req, res) {
+
+});
+
+function addNewUser(username, password, mail) {
+	function ldapBind(adminuser, adminpw, callback) {
+		var client = ldapjs.createClient({
+			url: ldapURL
+		});
+
+		var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
+		var newUser = {
+			objectClass: "top",
+			objectClass: "account",
+			objectClass: "posixAccount",
+			objectClass: "shadowAccount",
+			cn: username,
+			sn: username,
+			uid: username,
+			gidNumber: 100,
+			homeDirectory: "/home/" + username,
+			loginShell: "/bin/bash",
+			gecos: unsername,
+			userPassword: password,
+		}
+
+		client.bind(adminuser, adminpw, function(err) {
+			client.add(newDN, newUser, callback);
+		});
+	}
+
+}
+
+
 
 
 var server = app.listen(port, function() {

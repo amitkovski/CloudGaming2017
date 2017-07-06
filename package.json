@@ -9,7 +9,8 @@
     "body-parser": "*",
     "basic-auth": "*",
     "passport": "*",
-    "passport-ldapauth": "*"
+    "passport-ldapauth": "*",
+    "ldapjs": "*"
   },
   "devDependencies": {},
   "scripts": {
