@@ -37,6 +37,10 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/login.html');
 });
 
+app.get('/signup.html', function(req, res) {
+	res.sendFile(__dirname + '/public/signUp.html');
+})
+
 app.post('/login', passport.authenticate('ldapauth', { session : false }), function(req, res) {
 	res.send({status: 'ok'});
 });

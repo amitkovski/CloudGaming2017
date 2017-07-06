@@ -9,7 +9,7 @@ function onLogin() {
 }
 
 function onLoginSuccess(user) {
-    window.location.href = 'Gamepool.html';
+    window.location.href = 'gamepool.html';
 }
 
 function onLoginError(user, error) {
