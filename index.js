@@ -42,7 +42,8 @@ app.post('/login', passport.authenticate('ldapauth', { session : false }), funct
 });
 
 app.post('/signup', function(req, res) {
-
+	console.log(req.body);
+	//addNewUser(req.body.username, req.body.password, req.body.mail);
 });
 
 function addNewUser(username, password, mail) {
@@ -68,10 +69,10 @@ function addNewUser(username, password, mail) {
 		}
 
 		client.bind(adminuser, adminpw, function(err) {
+			console.log(err);
 			client.add(newDN, newUser, callback);
 		});
 	}
-
 }
 
 
