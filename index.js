@@ -23,8 +23,9 @@ var OPTS = {
 };
 
 var ldapURL = 'ldap://52.233.129.104:389';
-var adminuser = 'admin';
+var adminuser = 'cn=admin';
 var adminpw = 'root';
+var bindDN = 'cn=admin,dc=gamingservice,dc=cc'
 
 passport.use(new LdapStrategy(OPTS));
 
@@ -42,41 +43,56 @@ app.get('/signup.html', function(req, res) {
 })
 
 app.post('/login', passport.authenticate('ldapauth', { session : false }), function(req, res) {
-	res.send({status: 'ok'});
+	res.send({status: '200'});
 });
 
 app.post('/signup', function(req, res) {
 	console.log(req.body);
-	//addNewUser(req.body.username, req.body.password, req.body.mail);
+	addNewUser(req.body.username, req.body.password, req.body.mail, res);
 });
 
-function addNewUser(username, password, mail) {
-	function ldapBind(adminuser, adminpw, callback) {
+function addNewUser(username, password, mail, res) {
+
+	
 		var client = ldapjs.createClient({
 			url: ldapURL
 		});
 
 		var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
 		var newUser = {
-			objectClass: "top",
-			objectClass: "account",
 			objectClass: "posixAccount",
+			objectClass: "top",
+			//objectClass: "account",			
+			objectClass: "inetOrgPerson",
 			objectClass: "shadowAccount",
 			cn: username,
 			sn: username,
 			uid: username,
-			gidNumber: 100,
-			homeDirectory: "/home/" + username,
-			loginShell: "/bin/bash",
-			gecos: unsername,
+			//gidNumber: 100,
+			//homeDirectory: "/home/" + username,
+			//loginShell: "/bin/bash",
+			//gecos: username,
 			userPassword: password,
 		}
 
-		client.bind(adminuser, adminpw, function(err) {
-			console.log(err);
-			client.add(newDN, newUser, callback);
+		client.bind(bindDN, adminpw, function(bindErr) {
+			console.log("client.bind Error: " + bindErr);
+			client.add(newDN, newUser, function(addErr) {
+				console.log("client.add Error: " + addErr);
+				if (addErr == null) 
+				{
+					res.send({status: '200', success: true});
+					//res.sendFile(__dirname + '/public/login.html');
+				}
+				else
+				{
+					res.send({status: '400', error: addErr});
+				}
+
+			});
 		});
-	}
+	//function ldapBind(adminuser, adminpw, callback) {
+	//}
 }
 
 

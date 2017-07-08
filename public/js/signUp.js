@@ -98,11 +98,13 @@ function signUp(name, mail, password) {
 		data: {'username':name, 'mail':mail, 'password':password}, 
 		success: function(result) {
 			console.log("User-Result: ", result);
-			//onSignUpSuccess();
+			if (result.status == '200') {
+				onSignUpSuccess();
+			}			
 		},	
 		error: function(response) {
-			console.log(response);
-			onSignUpError("FakeUser", response);
+			console.log("Error: ", response);
+			onSignUpError("FakeUser", response.error);
 		}
 	});
 }	  

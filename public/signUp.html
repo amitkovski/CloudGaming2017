@@ -13,35 +13,36 @@
 
   <body>
 
-    <div class="container-fluid">
+    <div class="container">
 
+      <div class="account-wall">
       <!--form class="form-signin"-->
         <h2 class="form-signin-heading">Cloud Gaming - Registration</h2>
-        <label for="inputEmail" class="sr-only">Email</label>
+        <label for="inputEmail" class="sr-only">mail</label>
         
-        <input type="text" id="inputName" class="form-control" placeholder="Name" required>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>        
-        <input type="password" id="password"  class="form-control"  placeholder="Passwort"  required>
+        <input type="text" id="inputName" class="form-control" placeholder="name" required>
+        <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>        
+        <input type="password" id="password"  class="form-control"  placeholder="password"  required>
         
         <div id="row">
                 <div class="col-sm-8">          
-                     <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Zeichen lang<br>
-                     <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Ein Großbuchstabe        
+                     <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 characters long<br>
+                     <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> one capital letter
                 </div>
                 <div class="col-sm-8">
-                    <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Ein Kleinbuchstabe<br>
-                     <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Eine Zahl
+                    <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> one lowercase<br>
+                     <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> one number
                 </div>
        </div>
 
        <div class="alert alert-danger alert-dismissable fade in" hidden="hidden">
         <button type="button" class="close" data-hide="alert"  aria-hidden="true">&times;</button>
-        Signup fehlgeschlagen.
+        Signup error.
       </div>
         
        <button class="btn btn-lg btn-primary btn-block"  id="SigninBtn">Sign in</button>
         
-        
+      </div>  
       <!--/form-->
 
     </div> 
