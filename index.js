@@ -36,6 +36,7 @@ app.use(passport.initialize());
 
 
 app.get('/', function(req, res) {
+	//addNewUser('Hans', 'Wurst', 'Hans@wurst.de', res);
 	res.sendFile(__dirname + '/public/login.html');
 });
 
@@ -52,27 +53,28 @@ app.post('/signup', function(req, res) {
 	addNewUser(req.body.username, req.body.password, req.body.mail, res);
 });
 
-function addNewUser(username, password, mail, res) {
-
-	
+function addNewUser(username, password, mail, res) {	
 		var client = ldapjs.createClient({
 			url: ldapURL
 		});
 
 		var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
 		var newUser = {
-			objectClass: "posixAccount",
-			objectClass: "top",
+			objectClass: ["inetOrgPerson", "posixAccount"],
+			//objectClass: "top",
 			//objectClass: "account",			
-			objectClass: "inetOrgPerson",
-			objectClass: "shadowAccount",
+			//objectClass: "shadowAccount",
+			//dn: "uid=" + username + ",dc=gamingservice,dc=cc",
 			cn: username,
 			sn: username,
 			uid: username,
-			//gidNumber: 100,
-			//homeDirectory: "/home/" + username,
-			//loginShell: "/bin/bash",
-			//gecos: username,
+			uidNumber:13372,
+			gidNumber: 13372,
+			homeDirectory: "/home/" + username,
+			//objectClass: "inetOrgPerson",
+			
+			loginShell: "/bin/bash",
+			gecos: username,
 			userPassword: password,
 		}
 
