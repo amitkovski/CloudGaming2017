@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var port = 8080;
+,   port = process.env.Port || 3000;
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
