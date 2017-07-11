@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-//var port = process.env.Port || 3000;
-var port = 80;
+var port = process.env.Port || 3000;
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
@@ -71,8 +70,6 @@ function addNewUser(username, password, mail, res) {
 			uidNumber:13372,
 			gidNumber: 13372,
 			homeDirectory: "/home/" + username,
-			//objectClass: "inetOrgPerson",
-			
 			loginShell: "/bin/bash",
 			gecos: username,
 			userPassword: password,
@@ -101,7 +98,7 @@ function addNewUser(username, password, mail, res) {
 
 
 
-var server = app.listen(port, function() {
+server.listen(port, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 
