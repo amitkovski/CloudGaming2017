@@ -22,7 +22,7 @@ function onLoginError(user, error) {
 
 function login(username, password, cbSuccess, cbError) {
  $.ajax({
-    url: "http://localhost:3000/login",
+    url: "http://gamingservice.azurewebsites.net/login",
     type: 'POST',
     dataType: 'json',
     data: {'username':username, 'password':password}, 
