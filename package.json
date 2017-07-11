@@ -2,7 +2,7 @@
   "name": "cloudgamingservice",
   "version": "1.0.0",
   "description": "webapp for lecutre cloud computing and the topic cloud gaming developed by aleksandar mitkovski and moritz meyer",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "express" : "*",
     "http":"*",
