@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
 var ldapjs = require('ldapjs');
 
+server.listen(port);
+
 app.use(express.static(__dirname + '/public')); //redirect public Folder with static Assets
 app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/js', express.static(__dirname + '/public/js'));
@@ -98,9 +100,9 @@ function addNewUser(username, password, mail, res) {
 
 
 
-server.listen(port, function() {
+/*server.listen(port, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 
 	console.log("Example app listening at http://%s:%s", host, port);
-});
+});*/
