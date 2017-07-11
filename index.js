@@ -36,9 +36,8 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(passport.initialize());
 
 
-app.get('/', function(req, res) {
-	//addNewUser('Hans', 'Wurst', 'Hans@wurst.de', res);
-	res.sendFile(__dirname + '/public/login.html');
+app.get('/', function (req, res) {
+	res.sendfile(__dirname + '/public/login.html');
 });
 
 app.get('/signup.html', function(req, res) {
