@@ -1,13 +1,14 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var port = 80; //process.env.Port || 3000;
+var port = 8080;
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
 var ldapjs = require('ldapjs');
 
 server.listen(port);
+console.log("Server is listening at: " + port)
 
 app.use(express.static(__dirname + '/public')); //redirect public Folder with static Assets
 app.use('/css', express.static(__dirname + '/public/css'));
@@ -37,7 +38,7 @@ app.use(passport.initialize());
 
 
 app.get('/', function (req, res) {
-	res.sendfile(__dirname + '/public/login.html');
+	res.sendFile(__dirname + '/public/login.html');
 });
 
 app.get('/signup.html', function(req, res) {
