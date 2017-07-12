@@ -23,19 +23,19 @@
                         <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                             alt="">
                         <form class="form-signin" id="login" onsubmit="onLogin();return false;" >
-                            <label for="inputUser" class="sr-only">Benutzername</label>
-                            <input type="text" id="inputUser" class="form-control" placeholder="Benutzername" required autofocus>
+                            <label for="inputUser" class="sr-only">Username</label>
+                            <input type="text" id="inputUser" class="form-control" placeholder="username" required autofocus>
 
                             <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
                             
                             <button id="btn" class="btn btn-lg btn-primary btn-block" type="submit">
-                                Anmelden</button>
-                            <a href="gamepool.html" class="btn btn-lg btn-primary btn-block">
-                                    Registrierung</a>
+                                Login</button>
+                            <a href="signup" class="btn btn-lg btn-primary btn-block">
+                                    Registration</a>
                             <div class="alert alert-danger alert-dismissable fade in" hidden="hidden">
                                 <button type="button" class="close" data-hide="alert"  aria-hidden="true">&times;</button>
-                                Login fehlgeschlagen. Benutzername und/oder Passwort sind nicht korrekt.
+                                Error: username or password are incorrect!
                             </div>
                         </form>
                     </div>

@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/login.html');
 });
 
-app.get('/signup.html', function(req, res) {
+app.get('/signup', function(req, res) {
 	res.sendFile(__dirname + '/public/signUp.html');
 })
 
@@ -49,7 +49,7 @@ app.post('/login', passport.authenticate('ldapauth', { session : false }), funct
 	res.send({status: '200'});
 });
 
-app.post('/signup', function(req, res) {
+app.post('/newUser', function(req, res) {
 	console.log(req.body);
 	addNewUser(req.body.username, req.body.password, req.body.mail, res);
 });
