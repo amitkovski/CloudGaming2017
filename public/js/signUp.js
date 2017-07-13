@@ -92,7 +92,7 @@ function onSignUpError(user, error) {
 function signUp(name, mail, password) {
 	console.log("Name: " + name + ", Mail: " + mail + ", password: " + password);
 	$.ajax({
-		url: "http://gamingservice.azurewebsites.net/newUser",
+		url: "https://gamingservice.azurewebsites.net/newUser",
 		type: 'POST',
 		dataType: 'json',
 		data: {'username':name, 'mail':mail, 'password':password}, 
