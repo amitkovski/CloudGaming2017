@@ -54,7 +54,7 @@ $(document).ready(function(){
 			console.log("signin check = true");
 			var name = $("#inputName").val();
 			var mail = $("#inputEmail").val();
-			var password = $("#password").val();
+			var password = $("#inputPassword").val();
 			signUp(name, mail, password);
 		}
 	});
@@ -66,8 +66,8 @@ $(document).ready(function(){
 
 function check(){
 	console.log("check");
-	if(($("#password").val().length >= 8 && ucase.test($("#password").val()) &&
-		lcase.test($("#password").val()) && num.test($("#password").val()))){
+	if(($("#inputPassword").val().length >= 8 && ucase.test($("#inputPassword").val()) &&
+		lcase.test($("#inputPassword").val()) && num.test($("#inputPassword").val()))){
 			return true;
 		}  
 		else
