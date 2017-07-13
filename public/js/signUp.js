@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$("input[type=password]").keyup(function(){
  		
 	
-		if($("#password").val().length >= 8){
+		if($("#inputPassword").val().length >= 8){
 			$("#8char").removeClass("glyphicon-remove");
 			$("#8char").addClass("glyphicon-ok");
 			$("#8char").css("color","#00A41E");
@@ -17,7 +17,7 @@ $(document).ready(function(){
 			$("#8char").css("color","#FF0004");
 		}
 	
-		if(ucase.test($("#password").val())){
+		if(ucase.test($("#inputPassword").val())){
 			$("#ucase").removeClass("glyphicon-remove");
 			$("#ucase").addClass("glyphicon-ok");
 			$("#ucase").css("color","#00A41E");
@@ -27,7 +27,7 @@ $(document).ready(function(){
 			$("#ucase").css("color","#FF0004");
 		}	
 	
-		if(lcase.test($("#password").val())){
+		if(lcase.test($("#inputPassword").val())){
 			$("#lcase").removeClass("glyphicon-remove");
 			$("#lcase").addClass("glyphicon-ok");
 			$("#lcase").css("color","#00A41E");
@@ -37,7 +37,7 @@ $(document).ready(function(){
 			$("#lcase").css("color","#FF0004");
 		}
 	
-		if(num.test($("#password").val())){
+		if(num.test($("#inputPassword").val())){
 			$("#num").removeClass("glyphicon-remove");
 			$("#num").addClass("glyphicon-ok");
 			$("#num").css("color","#00A41E");
