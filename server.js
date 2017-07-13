@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var LdapStrategy = require('passport-ldapauth');
 var ldapjs = require('ldapjs');
 
-server.listen(port);
-console.log("Server is listening at: " + port)
 
 app.use(express.static(__dirname + '/public')); //redirect public Folder with static Assets
 app.use('/css', express.static(__dirname + '/public/css'));
@@ -59,6 +57,8 @@ function addNewUser(username, password, mail, res) {
 			url: ldapURL
 		});
 
+		var rand_uid = randomInt(1,99999);
+
 		var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
 		var newUser = {
 			objectClass: ["inetOrgPerson", "posixAccount"],
@@ -69,8 +69,8 @@ function addNewUser(username, password, mail, res) {
 			cn: username,
 			sn: username,
 			uid: username,
-			uidNumber:13372,
-			gidNumber: 13372,
+			uidNumber: rand_uid,
+			gidNumber: 1337,
 			homeDirectory: "/home/" + username,
 			loginShell: "/bin/bash",
 			gecos: username,
@@ -97,12 +97,10 @@ function addNewUser(username, password, mail, res) {
 	//}
 }
 
+function randomInt (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
 
-
-
-/*server.listen(port, function() {
-	var host = server.address().address;
-	var port = server.address().port;
-
-	console.log("Example app listening at http://%s:%s", host, port);
-});*/
+server.listen(port, function() {
+	console.log("Example app listening at http://%s:%s", server.address().address, server.address().port);
+});
