@@ -13,6 +13,9 @@ app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/img', express.static(__dirname + '/public/img'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : false }));
+
 var OPTS = {
   server: {
     url: 'ldap://52.233.129.104:389',
@@ -23,17 +26,8 @@ var OPTS = {
   }
 };
 
-var ldapURL = 'ldap://52.233.129.104:389';
-var adminuser = 'cn=admin';
-var adminpw = 'root';
-var bindDN = 'cn=admin,dc=gamingservice,dc=cc'
-
 passport.use(new LdapStrategy(OPTS));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended : false }));
 app.use(passport.initialize());
-
 
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/public/login.html');
@@ -52,55 +46,57 @@ app.post('/newUser', function(req, res) {
 	addNewUser(req.body.username, req.body.password, req.body.mail, res);
 });
 
+var ldapURL = 'ldap://52.233.129.104:389';
+var adminuser = 'cn=admin';
+var adminpw = 'root';
+var bindDN = 'cn=admin,dc=gamingservice,dc=cc'
+
 function addNewUser(username, password, mail, res) {	
-		var client = ldapjs.createClient({
-			url: ldapURL
+	var client = ldapjs.createClient({
+		url: ldapURL
+	});
+
+	var rand_uid = randomInt(1,99999);
+
+	//define domain (address) in LDAP tree for new user
+	var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
+	//create new user object
+	var newUser = {
+		objectClass: ["inetOrgPerson", "posixAccount"],
+		cn: username,
+		sn: username,
+		uid: username,
+		//userid is given randomly, there is no logic which ckecks if id is already 
+		//in use. If so, this function will fail with an ldap error => user can just try it again
+		uidNumber: rand_uid,
+		gidNumber: 1337,
+		homeDirectory: "/home/" + username,
+		loginShell: "/bin/bash",
+		gecos: username,
+		userPassword: password,
+	}
+
+	//bind webapp as new client on ldap-server (with admin credentials)
+	client.bind(bindDN, adminpw, function(bindErr) {
+		console.log("client.bind Error: " + bindErr);
+		//create new user on ldap-server
+		client.add(newDN, newUser, function(addErr){
+			console.log("client.add Error: " + addErr);
+			if (addErr == null) {
+				res.send({status: '200', success: true});
+			} else {
+				res.send({status: '400', error: addErr});
+			}
 		});
-
-		var rand_uid = randomInt(1,99999);
-
-		var newDN = "cn="+ username + ",dc=gamingservice,dc=cc";
-		var newUser = {
-			objectClass: ["inetOrgPerson", "posixAccount"],
-			//objectClass: "top",
-			//objectClass: "account",			
-			//objectClass: "shadowAccount",
-			//dn: "uid=" + username + ",dc=gamingservice,dc=cc",
-			cn: username,
-			sn: username,
-			uid: username,
-			uidNumber: rand_uid,
-			gidNumber: 1337,
-			homeDirectory: "/home/" + username,
-			loginShell: "/bin/bash",
-			gecos: username,
-			userPassword: password,
-		}
-
-		client.bind(bindDN, adminpw, function(bindErr) {
-			console.log("client.bind Error: " + bindErr);
-			client.add(newDN, newUser, function(addErr) {
-				console.log("client.add Error: " + addErr);
-				if (addErr == null) 
-				{
-					res.send({status: '200', success: true});
-					//res.sendFile(__dirname + '/public/login.html');
-				}
-				else
-				{
-					res.send({status: '400', error: addErr});
-				}
-
-			});
-		});
-	//function ldapBind(adminuser, adminpw, callback) {
-	//}
+	});
 }
 
-function randomInt (low, high) {
+function randomInt (low, high) 
+{
     return Math.floor(Math.random() * (high - low) + low);
 }
 
-server.listen(port, function() {
+server.listen(port, function() 
+{
 	console.log("Example app listening at http://%s:%s", server.address().address, server.address().port);
 });
